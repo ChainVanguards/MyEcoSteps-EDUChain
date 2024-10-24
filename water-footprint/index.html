@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyEcoSteps - Water Footprint & Marketplace</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../myecosteps-logo/png/logo-color.png">
+    <link rel="stylesheet" href="./water.css" />
+</head>
+
+<body>
+    <div class="logo-container">
+        <img src="../myecosteps-logo/png/logo-no-background.png" alt="Logo">
+    </div>
+
+    <audio id="background-audio" src="./aquarium.wav" autoplay loop></audio>
+
+    <div class="main-container">
+        <div class="left-container">
+            <div class="container">
+                <div class="question">
+                    <p style="text-align: right;">1/10</p>
+                    <p>How many times do you take shower per week?</p>
+                    <div class="choices">
+                        <div class="choice" onclick="selectChoice(15)">1-3</div>
+                        <div class="choice" onclick="selectChoice(30)">4-6</div>
+                        <div class="choice" onclick="selectChoice(45)">7+</div>
+                    </div>
+                </div>
+                <div class="question" style="display:none">
+                    <p style="text-align: right;">2/10</p>
+                    <p>What is your average shower time?</p>
+                    <div class="choices">
+                        <div class="choice" onclick="selectChoice(20)">1-5 mins</div>
+                        <div class="choice" onclick="selectChoice(40)">5-20 mins</div>
+                        <div class="choice" onclick="selectChoice(75)">Over 20 mins</div>
+                    </div>
+                </div>
+                <div class="question" style="display:none">
+                    <p style="text-align: right;">3/10</p>
+                    <p>How long do you keep the taps open at home?</p>
+                    <div class="choices">
+                        <div class="choice" onclick="selectChoice(40)">1-15 mins</div>
+                        <div class="choice" onclick="selectChoice(85)">15-45 mins</div>
+                        <div class="choice" onclick="selectChoice(150)">Over 45 mins</div>
+                    </div>
+                </div>
+                <div class="question" style="display:none">
+                    <p style="text-align: right;">4/10</p>
+                    <p>How do you wash your laundry?</p>
+                    <div class="choices">
+                        <div class="choice" onclick="selectChoice(35)">Washing Machine</div>
+                        <div class="choice" onclick="selectChoice(10)">by Hand</div>
+                    </div>
+                </div>
+                <div class="question" style="display:none">
+                    <p style="text-align: right;">5/10</p>
+                    <p>How do you wash your dishes?</p>
+                    <div class="choices">
+                        <div class="choice" onclick="selectChoice(15)">Dishwasher</div>
+                        <div class="choice" onclick="selectChoice(27)">by Hand</div>
+                    </div>
+                </div>
+                <div class="question" style="display:none">
+                    <p style="text-align: right;">6/10</p>
+                    <p>How many cups of coffee do you drink per week?</p>
+                    <div class="choices">
+                        <div class="choice" onclick="selectChoice(21)">1-3</div>
+                        <div class="choice" onclick="selectChoice(27)">4-6</div>
+                        <div class="choice" onclick="selectChoice(52)">7+</div>
+                    </div>
+                </div>
+                <div class="question" style="display:none">
+                    <p style="text-align: right;">7/10</p>
+                    <p>How often do you shop?</p>
+                    <div class="choices">
+                        <div class="choice" onclick="selectChoice(291)">Rarely</div>
+                        <div class="choice" onclick="selectChoice(583)">Sometimes</div>
+                        <div class="choice" onclick="selectChoice(1166)">Until my energy is gone</div>
+                    </div>
+                </div>
+                <div class="question" style="display:none">
+                    <p style="text-align: right;">8/10</p>
+                    <p>How many times do you wash your car a year?</p>
+                    <div class="choices">
+                        <div class="choice" onclick="selectChoice(1)">0-2</div>
+                        <div class="choice" onclick="selectChoice(2)">3-5</div>
+                        <div class="choice" onclick="selectChoice(5)">6-15</div>
+                    </div>
+                </div>
+                <div class="question" style="display:none">
+                    <p style="text-align: right;">9/10</p>
+                    <p>Do you recycle paper, plastic, bottles and cans?</p>
+                    <div class="choices">
+                        <div class="choice" onclick="selectChoice(-50)">Always</div>
+                        <div class="choice" onclick="selectChoice(-25)">Sometimes</div>
+                        <div class="choice" onclick="selectChoice(16)">Never</div>
+                    </div>
+                </div>
+                <div class="question" style="display:none">
+                    <p style="text-align: right;">10/10</p>
+                    <p>Whats's your diet?</p>
+                    <div class="choices">
+                        <div class="choice" onclick="selectChoice(1283)">Where's my meat!!</div>
+                        <div class="choice" onclick="selectChoice(563)">Vegetarian</div>
+                        <div class="choice" onclick="selectChoice(406)">Vegan</div>
+                    </div>
+                </div>
+
+                <div class="points">Your Water Footprint: <br><span id="points">0</span><span> Gallons / Day</span></div>
+            </div>
+        </div>
+
+        <div class="right-container">
+            <button id="connectButton" class="connect-wallet-btn">Connect MetaMask</button>
+
+            <div class="images-container">
+                <img src="./products/MyEcoSteps-backpack.png" alt="Image 1" class="market-image">
+                <img src="./products/MyEcoSteps-thermos.png" alt="Image 2" class="market-image">
+            </div>
+
+            <div class="survey-form">
+                <div class="form-group">
+                    <label for="walletAddress">Open Campus Codex</label>
+                    <input type="text" class="form-control" id="walletAddress" placeholder="Connect Metamask Wallet" disabled required />
+                </div>
+                <div class="form-group">
+                    <label for="products">What to purchase:</label>
+                    <select id="products" class="form-control" style="color: #333;" required>
+                        <option value="">Choose your product</option>
+                        <option value="backpack">MyEcoSteps Backpack</option>
+                        <option value="thermos">MyEcoSteps Thermos</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="options">-- ↓ Where to donate 20% of your purchase ↓ --</label>
+                    <select id="options" class="form-control" style="color: #333;" required>
+                        <option value="">Choose a volunteer organization</option>
+                        <option value="water1">Water.org</option>
+                        <option value="water2">Water For People</option>
+                        <option value="water3">The Water Project</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="mail">*Mail Address</label>
+                    <input class="form-control" style="color: #333;" id="mail" placeholder="Mail Address" required />
+                </div>
+                <div class="form-group">
+                    <label for="phone">*Phone Number</label>
+                    <input type="text" class="form-control" style="color: #333;" id="phone" placeholder="+" required />
+                </div>
+                <div class="form-group">
+                    <label for="deliveryAddress">*Delivery Address</label>
+                    <textarea class="form-control" style="color: #333;" id="deliveryAddress" rows="3" placeholder="Enter your delivery address" required></textarea>
+                </div>
+                <div class="container">
+                    <div class="bottom-buttons">
+                        <form id="sent-form">
+                            <div class="sent">
+                                <input type="checkbox" id="sent-checkbox" required />
+                                <label for="sent-checkbox">I confirm that the product will be provided to my delivery address and my wallet address and purchase information will be held in the EDU Chain for 1 year.
+                                    We are currently working on product designs and negotiating cargo delivery opportunities, and this is a test submission. You will be able to try the website by paying 0.1 EDU.</label>
+                            </div>
+                        </form>
+                    </div>
+                    <button class="btn-success" id="submitButton" onclick="startTransaction()">Submit</button>
+                </div>
+                <!--0x608060405234801561001057600080fd5b50600436106100935760003560e01c8063ae77c23711610066578063ae77c2
+                3714610166578063b955507a1461017b578063c16cc8101461018e578063c416ec7f146101a5578063eb5d1c39146101b85760
+                0080fd5b806354f8400e14610098578063842a77d3146100c85780638d878889146101405780638da5cb5b14610153575b6000
+                80fd5b6004546100ab906001600160a01b031681565b6040516001600160a01b0390911681526020015b60405180910390f35b
+                61010b6100d63660046105bf565b60006020819052908152604090208054600182015460028301546003909301546001600160
+                a01b039283169391929091169084565b6040516100bf94939291906001600160a01b0394851681526020810193909352921660
+                40820152606081019190915260800190565b6006546100ab906001600160a01b031681565b6001546100ab906001600160a01b
+                031681565b6101796101743660046105e1565b610209565b005b6003546100ab906001600160a01b031681565b610197600554
+                81565b6040519081526020016100bf565b6002546100ab906001600160a01b031681565b6101cb6101c63660046105bf565b61
+                04b9565b6040805182516001600160a01b03908116825260208085015190830152838301511691810191909152606091820151
+                918101919091526080016100bf565b6002546001600160a01b038281169116148061023257506003546001600160a01b038281
+                169116145b8061024a57506004546001600160a01b038281169116145b61029b5760405162461bcd60e51b8152602060048201
+                52601c60248201527f496e76616c6964206f7267616e697a6174696f6e20616464726573730000000060448201526064015b60
+                405180910390fd5b60006064600554846102ad9190610623565b6102b79190610640565b905060006102c58285610662565b60
+                06546040516323b872dd60e01b8152336004820152306024820152604481018790529192506001600160a01b0316906323b872
+                dd906064016020604051808303816000875af115801561031d573d6000803e3d6000fd5b505050506040513d601f19601f8201
+                16820180604052508101906103419190610675565b5060065460405163a9059cbb60e01b81526001600160a01b038581166004
+                830152602482018590529091169063a9059cbb906044016020604051808303816000875af1158015610395573d6000803e3d60
+                00fd5b505050506040513d601f19601f820116820180604052508101906103b99190610675565b506040805160808101825233
+                80825260208083018581526001600160a01b0388811685870181815242606080890182815260008981528089528b902099518a
+                549087166001600160a01b0319918216178b55965160018b0155925160028a0180549190961696169590951790935551600390
+                96019590955585518781529283019490945293810192909252917f354b29cccdde5e4d6747fb9a73b36aab413b5b9a597f82c4
+                3cb3a0cc192d0e02910160405180910390a2826001600160a01b03167f67a9bd2734eac78f1ac30823ea3d8e3c8b2be225836b
+                3a4917ed0c15508f40aa836040516104ab91815260200190565b60405180910390a250505050565b6040805160808101825260
+                008082526020808301829052828401829052606083018290526001600160a01b03851682528190529190912060030154610502
+                906301e13380610697565b42106105505760405162461bcd60e51b815260206004820181905260248201527f50757263686173
+                6520696e666f726d6174696f6e2068617320657870697265646044820152606401610292565b506001600160a01b0390811660
+                009081526020818152604091829020825160808101845281548516815260018201549281019290925260028101549093169181
+                0191909152600390910154606082015290565b80356001600160a01b03811681146105ba57600080fd5b919050565b60006020
+                82840312156105d157600080fd5b6105da826105a3565b9392505050565b600080604083850312156105f457600080fd5b8235
+                9150610604602084016105a3565b90509250929050565b634e487b7160e01b600052601160045260246000fd5b808202811582
+                820484141761063a5761063a61060d565b92915050565b60008261065d57634e487b7160e01b600052601260045260246000fd
+                5b500490565b8181038181111561063a5761063a61060d565b60006020828403121561068757600080fd5b8151801515811461
+                05da57600080fd5b8082018082111561063a5761063a61060d56fea2646970667358221220d4798ad91a9b7cd65412a2d6d2e4
+                a10804914848465deecb9e732b9ea8b8455e64736f6c634300081a0033-->
+            </div>
+        </div>
+
+    </div>
+
+    <script src="quiz.js"></script>
+    <script src="audio.js"></script>
+    <script src="form-main.js"></script>
+    <script src="form-side.js"></script>
+
+</body>
+
+</html>
